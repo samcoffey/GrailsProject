@@ -1,4 +1,4 @@
-package interns
+package com.virtualleap.app
 
 import com.virtualleap.webapp.types.NotifyPaymentResponse
 import grails.transaction.Transactional

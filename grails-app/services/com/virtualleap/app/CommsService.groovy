@@ -1,4 +1,4 @@
-package interns
+package com.virtualleap.app
 
 import grails.transaction.Transactional
 import groovyx.net.http.ContentType
