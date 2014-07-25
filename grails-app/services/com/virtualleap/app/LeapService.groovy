@@ -9,6 +9,7 @@ class LeapService {
 
     GrailsApplication grailsApplication
     CommsService commsService
+    EventService eventService
 
     /**
      * Return the status of the call from the Simplify API platform
@@ -30,6 +31,8 @@ class LeapService {
                 [merchantId: merchantId, cardNumber: requestParams.cardNumber, cardName: requestParams.cardHolderName],
                 grailsApplication.config.simplify.processpayment)
 
+        // Log event to database
+        eventService.logEventLogout('Test');
 
         // Populate the response retrieved from the platform, will be in JSON format
         NotifyPaymentResponse notifyPaymentResponse = new NotifyPaymentResponse(status: response.json.status)
