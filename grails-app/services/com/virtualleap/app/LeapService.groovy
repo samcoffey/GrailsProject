@@ -1,6 +1,6 @@
 package com.virtualleap.app
 
-import com.virtualleap.webapp.types.NotifyPaymentResponse
+import com.virtualleap.app.types.NotifyPaymentResponse
 import grails.transaction.Transactional
 import org.codehaus.groovy.grails.commons.GrailsApplication
 
