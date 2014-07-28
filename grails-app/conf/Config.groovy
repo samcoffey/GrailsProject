@@ -1,4 +1,4 @@
-import com.hackinterns.hack.logging.MaskingLayout
+import com.dublininterns.hack.logging.MaskingLayout
 import org.apache.log4j.RollingFileAppender
 
 // locations to search for config files that get merged into the main config;
@@ -55,7 +55,7 @@ grails.controllers.defaultScope = 'singleton'
 
 // Simplify API
 merchant.id = '123456'
-simplify.host = 'http://www.somehost.com'
+simplify.host = 'http://www.somewhere.com'
 simplify.processpayment = 'status.json'
 
 // GSP settings
@@ -160,7 +160,7 @@ log4j = {
             'grails.app.taglib.org.grails.plugin.resource', // Only log error
             'grails.app.resourceMappers.org.grails.plugin.resource' // Only log error
 
-    debug   'grails.app.controllers.com.hackinterns.hack',
+    debug   'grails.app.controllers.com.dublininterns.hack',
             'grails.app.services.com.dublininterns.hack',
             'grails.app.domain.com.dublininterns.hack',
             'grails.app.jobs.com.dublininterns.hack',
@@ -168,8 +168,7 @@ log4j = {
             'grails.app.conf.BootStrap',
             'grails.app.filters',
             'grails.app.task',
-            'org.bson'
-    
+
     root {
         error 'mainAppender', 'grailsProjectAppender'
         additivity = true
