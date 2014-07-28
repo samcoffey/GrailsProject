@@ -1,4 +1,4 @@
-package com.virtualleap.app.types
+package com.dublininterns.hack.types
 
 class NotifyPaymentResponse {
 

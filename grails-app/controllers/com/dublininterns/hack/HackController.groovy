@@ -1,6 +1,6 @@
 package com.dublininterns.hack
 
-import com.virtualleap.app.types.NotifyPaymentResponse
+import com.dublininterns.hack.types.NotifyPaymentResponse
 import grails.converters.JSON
 
 class HackController {
@@ -23,6 +23,5 @@ class HackController {
 
         log.info("<<processPayment(), response=$response")
         render response as JSON
-
     }
 }

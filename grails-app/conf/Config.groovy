@@ -1,3 +1,6 @@
+import com.hackinterns.hack.logging.MaskingLayout
+import org.apache.log4j.RollingFileAppender
+
 // locations to search for config files that get merged into the main config;
 // config files can be ConfigSlurper scripts, Java properties files, or classes
 // in the classpath in ConfigSlurper format
@@ -31,6 +34,11 @@ grails.mime.types = [ // the first one is the default format
     xml:           ['text/xml', 'application/xml']
 ]
 
+grails.gorm.failOnError=true
+
+String basedir = System.properties["base.dir"]
+String log4jFileLocation = System.properties["jboss.server.log.dir"] ? "${System.properties["jboss.server.log.dir"]}/" : "${basedir}/"
+
 // URL Mapping Cache Max Size, defaults to 5000
 //grails.urlmapping.cache.maxsize = 1000
 
@@ -47,8 +55,8 @@ grails.controllers.defaultScope = 'singleton'
 
 // Simplify API
 merchant.id = '123456'
-simplify.host = 'https://www.whatever.com'
-simplify.processpayment = '/notifypayment'
+simplify.host = 'http://www.somehost.com'
+simplify.processpayment = 'status.json'
 
 // GSP settings
 grails {
@@ -112,15 +120,83 @@ log4j = {
     //    console name:'stdout', layout:pattern(conversionPattern: '%c{2} %m%n')
     //}
 
-    error  'org.codehaus.groovy.grails.web.servlet',        // controllers
-           'org.codehaus.groovy.grails.web.pages',          // GSP
-           'org.codehaus.groovy.grails.web.sitemesh',       // layouts
-           'org.codehaus.groovy.grails.web.mapping.filter', // URL mapping
-           'org.codehaus.groovy.grails.web.mapping',        // URL mapping
-           'org.codehaus.groovy.grails.commons',            // core / classloading
-           'org.codehaus.groovy.grails.plugins',            // plugins
-           'org.codehaus.groovy.grails.orm.hibernate',      // hibernate integration
-           'org.springframework',
-           'org.hibernate',
-           'net.sf.ehcache.hibernate'
+    appenders {
+        'null' name: 'stacktrace'
+
+        console name: 'mainAppender', layout: {
+            // Using a MaskingLayout to mask sensitive information.
+            def layout = new MaskingLayout(conversionPattern: '%d{dd,MM HH:mm:ss:SSS} [%X{REQUEST_URL_PATH}|%X{REQUEST_ID}|%X{SDK_THREAD_NAME}|%X{SDK_THREAD_ID}] [%t] %-5p %c{2} - %m\n')
+            layout.activateOptions()
+            layout
+        }.call()
+
+        appender name: 'grailsProjectAppender', new RollingFileAppender(file: "${log4jFileLocation}GrailsProject.log", layout: {
+            // Using a MaskingLayout to mask sensitive information.
+            def layout = new MaskingLayout(conversionPattern: '%d{dd,MM HH:mm:ss:SSS} [%X{REQUEST_URL_PATH}|%X{REQUEST_ID}|%X{SDK_THREAD_NAME}|%X{SDK_THREAD_ID}] [%t] %-5p %c{2} - %m\n')
+            layout.activateOptions()
+            layout
+        }.call())
+
+        appender name: 'sqlAppender', new RollingFileAppender(file: "${log4jFileLocation}sql.log", layout:pattern(conversionPattern:
+                '%d{yyyy-MM-dd HH:mm:ss:SSS} [%X{REQUEST_URL_PATH}|%X{REQUEST_ID}|%X{ACCESS_TOKEN}|%X{SESSION_ID}|%X{QKR_USER_ID}] [%t] %-5p %c{2} - %m\n'))
+    }
+
+    error sqlAppender: 'org.hibernate.SQL', additivity: true
+
+    error 'org.codehaus.groovy.grails.web.servlet',        // controllers
+            'org.codehaus.groovy.grails.web.pages',          // GSP
+            'org.codehaus.groovy.grails.web.sitemesh',       // layouts
+            'org.codehaus.groovy.grails.web.mapping.filter', // URL mapping
+            'org.codehaus.groovy.grails.web.mapping',        // URL mapping
+            'org.codehaus.groovy.grails.commons',            // core / classloading
+            'org.codehaus.groovy.grails.plugins',            // plugins
+            'org.codehaus.groovy.grails.orm.hibernate',      // hibernate integration
+            'grails.app.service.org.grails.plugin.resource',
+            'org.springframework',
+            'org.hibernate',
+            'net.sf.ehcache.hibernate',
+            'errorAppender',
+            'grails.app.services.org.grails.plugin.resource',
+            'grails.app.taglib.org.grails.plugin.resource', // Only log error
+            'grails.app.resourceMappers.org.grails.plugin.resource' // Only log error
+
+    debug   'grails.app.controllers.com.hackinterns.hack',
+            'grails.app.services.com.dublininterns.hack',
+            'grails.app.domain.com.dublininterns.hack',
+            'grails.app.jobs.com.dublininterns.hack',
+            'com.dublininterns.hack',
+            'grails.app.conf.BootStrap',
+            'grails.app.filters',
+            'grails.app.task',
+            'org.bson'
+    
+    root {
+        error 'mainAppender', 'grailsProjectAppender'
+        additivity = true
+    }
+
+    environments {
+
+        development {
+
+            appenders {
+                file name: 'mainAppender', file: 'grailsProject.log'
+                appender name: 'mainAppenderLogFile', new RollingFileAppender(file: "grailsProject.log", threshold: org.apache.log4j.Level.DEBUG, layout: pattern(conversionPattern:
+                        '%d{yyyy-MM-DD HH:mm:ss:SSS} [%X{REQUEST_URL_PATH}|%X{REQUEST_ID}|%X{REQUEST_USER}] [%t] %-5p %c{2} - %m\n'))
+            }
+        }
+
+        production {
+
+            warn 'grails.app.conf',
+                    'grails.app.filters',
+                    'grails.app.services',
+                    'grails.app.controllers',
+                    'grails.app.domain',
+                    'com.dublininterns.hack.dexter'
+
+            off 'org.apache.http.headers'
+            off 'org.apache.http.wire'
+        }
+    }
 }

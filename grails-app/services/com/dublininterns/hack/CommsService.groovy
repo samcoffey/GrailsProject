@@ -31,7 +31,7 @@ class CommsService {
 
                 // response handler for a success response code
                 response.success = { HttpResponseDecorator resp, json ->
-                    log.info("getFromDemandware(), successful response $resp.statusLine ")
+                    log.info("getFromSimplify(), successful response $resp.statusLine ")
                     responseMap.httpResponse = resp
                     responseMap.json = json
 
@@ -44,14 +44,14 @@ class CommsService {
 
                 // handler for any failure status code
                 response.failure = { resp, json ->
-                    log.error "getFromDemandware(), Unexpected error: " +
+                    log.error "getFromSimplify(), Unexpected error: " +
                             "${resp.statusLine.statusCode} : ${resp.statusLine.reasonPhrase}"
                     responseMap.httpResponse = resp
                     responseMap.json = json
                 }
         }
 
-        log.info("<< getFromDemandware(), responseMap=$responseMap")
+        log.info("<< getFromSimplify(), responseMap=$responseMap")
         return responseMap
     }
 

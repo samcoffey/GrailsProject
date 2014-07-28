@@ -10,7 +10,7 @@ class UrlMappings {
         "/"(view:"/index")
         "500"(view:'/error')
 
-        "/hackapi/notifypayment" (controller: "hack", parseRequest: true) { action = [GET: "processPayment", POST: "processPayment"] }
+        "/hackapi/notifypayment" (controller: "hack", parseRequest: true) { action = [POST: "processPayment"] }
 
     }
 }

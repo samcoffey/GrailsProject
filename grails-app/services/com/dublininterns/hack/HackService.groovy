@@ -1,7 +1,6 @@
 package com.dublininterns.hack
 
-import com.virtualleap.app.types.NotifyPaymentResponse
-import grails.transaction.Transactional
+import com.dublininterns.hack.types.NotifyPaymentResponse
 import org.codehaus.groovy.grails.commons.GrailsApplication
 
 class HackService {
