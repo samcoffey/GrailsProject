@@ -1,10 +1,6 @@
-package com.virtualleap.app
-
-import grails.transaction.Transactional
+package com.dublininterns.hack
 
 class EventService {
-
-    def grailsApplication
 
     def logEventLogin(String user) {
         assert user != null, "User cannot be null when creating an event"

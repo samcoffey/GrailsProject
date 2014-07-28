@@ -1,11 +1,10 @@
-package com.virtualleap.app
+package com.dublininterns.hack
 
 import com.virtualleap.app.types.NotifyPaymentResponse
 import grails.transaction.Transactional
 import org.codehaus.groovy.grails.commons.GrailsApplication
 
-@Transactional
-class LeapService {
+class HackService {
 
     GrailsApplication grailsApplication
     CommsService commsService

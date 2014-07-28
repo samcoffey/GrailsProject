@@ -1,13 +1,11 @@
-package com.virtualleap.app
+package com.dublininterns.hack
 
-import grails.transaction.Transactional
 import groovyx.net.http.ContentType
 import groovyx.net.http.HttpResponseDecorator
 import groovyx.net.http.Method
 import groovyx.net.http.RESTClient
 import org.codehaus.groovy.grails.commons.GrailsApplication
 
-@Transactional
 class CommsService {
 
     GrailsApplication grailsApplication

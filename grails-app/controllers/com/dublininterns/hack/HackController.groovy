@@ -1,11 +1,11 @@
-package com.virtualleap.app
+package com.dublininterns.hack
 
 import com.virtualleap.app.types.NotifyPaymentResponse
 import grails.converters.JSON
 
-class LeapController {
+class HackController {
 
-    LeapService leapService
+    HackService hackService
 
     // Notes
     // 1. params are the request params in the body/URL. Understand HTTP request params
@@ -15,7 +15,9 @@ class LeapController {
     public JSON processPayment() {
         log.info(">>processPayment(), params=$params")
 
-        NotifyPaymentResponse response = leapService.processPayment(params as Map)
+        NotifyPaymentResponse response = hackService.processPayment(params as Map)
+
+        log.debug("processPayment(), customerName=$params.customerName")
 
         // The response will be JSON format. So the POJO NotifyPaymentResponse will represented in JSON
 
