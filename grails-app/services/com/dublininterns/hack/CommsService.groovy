@@ -35,6 +35,8 @@ class CommsService {
                     responseMap.httpResponse = resp
                     responseMap.json = json
 
+                    log.info("getFromSimplify(), json=$json")
+
                     resp.getHeaders('Set-Cookie').each {
                         String cookie = it.value.split(';')[0]
                         log.debug("Adding cookie to collection: $cookie")
