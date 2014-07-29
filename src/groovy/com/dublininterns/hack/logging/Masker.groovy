@@ -26,7 +26,6 @@ class Masker {
 
     }
 
-
     public static String maskFirstThird( String variable) {
         // no harm being defensive
         if (variable != null) {
