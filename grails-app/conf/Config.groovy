@@ -55,8 +55,9 @@ grails.controllers.defaultScope = 'singleton'
 
 // Simplify API
 merchant.id = '123456'
-simplify.host = 'http://www.somewhere.com'
+simplify.host = 'https://raw.githubusercontent.com/longieirl/GrailsProject/develop/'
 simplify.processpayment = 'status.json'
+simplify.checkout = 'checkout.json'
 
 // GSP settings
 grails {
@@ -109,6 +110,8 @@ environments {
     production {
         grails.logging.jul.usebridge = false
         // TODO: grails.serverURL = "http://www.changeme.com"
+
+        simplify.host = 'http://www.producrl.com'
     }
 }
 

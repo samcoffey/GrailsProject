@@ -2,18 +2,11 @@ package com.dublininterns.hack
 
 class EventService {
 
-    def logEventLogin(String user) {
-        assert user != null, "User cannot be null when creating an event"
-
-        Event event = new Event(eventType: EventEnum.LOGIN,  secuser: user, comment: "User logging in");
-        event.save();
-    }
-
 
     def logEventLogout(String user) {
         assert user != null, "User cannot be null when creating an event"
 
-        Event event = new Event(eventType: EventEnum.LOGOUT, secuser: user, comment: "User logging out");
+        Event event = new Event(eventType: EventEnum.LOGOUT, secuser: user, comment: "Just a small comment");
         event.save();
     }
 

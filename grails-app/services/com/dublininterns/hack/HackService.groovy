@@ -30,7 +30,7 @@ class HackService {
                 grailsApplication.config.simplify.processpayment)
 
         // Log event to database
-        eventService.logEventLogout('Test');
+        eventService.notifyPayment('Test');
 
         // Populate the response retrieved from the platform, will be in JSON format
         NotifyPaymentResponse notifyPaymentResponse = new NotifyPaymentResponse(status: response.json.status)
