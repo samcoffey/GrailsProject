@@ -27,6 +27,8 @@ grails.project.dependency.resolution = {
     }
 
     dependencies {
+		compile 'com.simplify:payments-sdk-java:1.1.2'
+		runtime 'com.javadocmd:simplelatlng:1.0.0'
     }
 
     plugins {
@@ -40,6 +42,7 @@ grails.project.dependency.resolution = {
         compile ":scaffolding:2.0.3"
         compile ':cache:1.1.2'
         compile ':rest:0.8'
+		compile ":geolocation:0.4.1"
 
         // plugins needed at runtime but not for compilation
         runtime ":hibernate:3.6.10.15" // or ":hibernate4:4.3.5.2"
