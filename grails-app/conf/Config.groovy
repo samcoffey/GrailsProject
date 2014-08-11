@@ -58,6 +58,8 @@ merchant.id = '123456'
 simplify.host = 'https://raw.githubusercontent.com/longieirl/GrailsProject/develop/'
 simplify.processpayment = 'status.json'
 simplify.checkout = 'checkout.json'
+simplify.private.key = 'YOUR_PRIVATE_API_KEY'
+simplify.public.key = 'YOUR_PUBLIC_API_KEY'
 
 // GSP settings
 grails {
