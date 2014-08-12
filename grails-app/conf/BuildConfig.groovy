@@ -30,7 +30,7 @@ grails.project.dependency.resolution = {
     dependencies {
 		compile 'com.simplify:payments-sdk-java:1.1.2'
 		runtime 'com.javadocmd:simplelatlng:1.0.0'
-		runtime 'com.nimbusds:nimbus-jose-jwt:2.10.1'
+		runtime 'net.minidev:json-smart:1.0.9'
     }
 
     plugins {
