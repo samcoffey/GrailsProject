@@ -1,6 +1,7 @@
 package com.dublininterns.hack
 
 import com.dublininterns.hack.types.NotifyPaymentResponse
+
 import grails.converters.JSON
 
 class HackController {
