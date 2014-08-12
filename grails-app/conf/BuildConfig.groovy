@@ -32,6 +32,7 @@ grails.project.dependency.resolution = {
 		runtime 'com.javadocmd:simplelatlng:1.0.0'
 		runtime 'com.nimbusds:nimbus-jose-jwt:2.10.0'
 		runtime 'net.minidev:json-smart:1.0.9'
+		runtime 'postgresql:postgresql:8.4-702.jdbc3'
     }
 
     plugins {
