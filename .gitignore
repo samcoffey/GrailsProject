@@ -16,9 +16,6 @@ stacktrace.log
 /.link_to_grails_plugins/
 /target-eclipse/
 /.classpath
+/null
+/.project
 
-.project
-eclipse
-/plugins
-web-app/WEB-INF/tld/c.tld
-web-app/WEB-INF/tld/fmt.tld
