@@ -111,8 +111,9 @@ environments {
     }
     production {
         grails.logging.jul.usebridge = false
+		
+		//SC: changed the following
         grails.serverURL = "http://vleap.herokuapp.com"
-
         //simplify.host = 'http://www.producrl.com'
     }
 }
