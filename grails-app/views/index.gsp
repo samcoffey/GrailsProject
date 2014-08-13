@@ -123,7 +123,7 @@
 		<img src="${resource(dir: 'images', file: 'profile.jpg')}" class="img-responsive "/><hr>
 		<img src="${resource(dir: 'images', file: 'profile2.jpg')}" class="img-responsive "/><hr>
 		<g:link mapping = "simpview" ><img src="${resource(dir: 'images', file: 'button.jpg')}" class="img-responsive "/></g:link><hr>
-		<img src="${resource(dir: 'images', file: 'locat.jpg')}" class="img-responsive "/>
+		<img src="${resource(dir: 'images', file: 'Locat.jpg')}" class="img-responsive "/>
 		
 		<script src="http://openlayers.org/api/OpenLayers.js"></script>
 		<div id="map" class="smallmap"></div>
