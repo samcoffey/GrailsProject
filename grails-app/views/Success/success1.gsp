@@ -114,7 +114,7 @@
 		<img src="${resource(dir: 'images', file: 'profile.jpg')}" class="img-responsive "/><hr>
 		<img src="${resource(dir: 'images', file: 'VLEAP3.jpg')}" class="img-responsive "/><hr>
 		<g:link mapping = "tagoff1" ><img src="${resource(dir: 'images', file: 'button3.jpg')}" class="img-responsive "/></g:link><hr>
-		<img src="${resource(dir: 'images', file: 'VLEAP.jpg')}" class="img-responsive "/>
+		<img src="${resource(dir: 'images', file: 'VLEAP4.jpg')}" class="img-responsive "/>
 		
 		
 
