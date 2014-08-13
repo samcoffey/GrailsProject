@@ -2,8 +2,24 @@
 <html>
 	<head>
 		<meta name="layout" content="main"/>
-		<title>Welcome to Grails</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	  	<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+		<script src="${resource(dir: 'js', file: 'bootstrap.min.js')}"></script>
+
+		<link href="${resource(dir: 'css', file: 'bootstrap.min.css')}" rel="stylesheet">
+ 		<link rel="shortcut icon" href="${resource(dir: 'images', file: 'favicon.ico')}" type="image/x-icon">
+   		 <title>VLEAP</title>
 		<style type="text/css" media="screen">
+		    .navbar-nav li a {font-size:30px;}
+			#map 
+			{
+    			width:290px;height:340px;border:1px solid grey;padding: 0 0 0 0;margin:10px !important;
+			}
+		
+			p 
+			{
+		   s 	margin:10px; font:10pt sans-serif;
+			}
 			#status {
 				background-color: #eee;
 				border: .2em solid #fff;
@@ -82,33 +98,8 @@
 	</head>
 	<body>
 		<a href="#page-body" class="skip"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		<div id="status" role="complementary">
-			<h1>Application Status</h1>
-			<ul>
-				<li>App version: <g:meta name="app.version"/></li>
-				<li>Grails version: <g:meta name="app.grails.version"/></li>
-				<li>Groovy version: ${GroovySystem.getVersion()}</li>
-				<li>JVM version: ${System.getProperty('java.version')}</li>
-				<li>Reloading active: ${grails.util.Environment.reloadingAgentEnabled}</li>
-				<li>Controllers: ${grailsApplication.controllerClasses.size()}</li>
-				<li>Domains: ${grailsApplication.domainClasses.size()}</li>
-				<li>Services: ${grailsApplication.serviceClasses.size()}</li>
-				<li>Tag Libraries: ${grailsApplication.tagLibClasses.size()}</li>
-			</ul>
-			<h1>Installed Plugins</h1>
-			<ul>
-				<g:each var="plugin" in="${applicationContext.getBean('pluginManager').allPlugins}">
-					<li>${plugin.name} - ${plugin.version}</li>
-				</g:each>
-			</ul>
-		</div>
 		<div id="page-body" role="main">
-			<h1>Welcome to Grails</h1>
-			<p>Congratulations, you have successfully started your first Grails application! At the moment
-			   this is the default page, feel free to modify it to either redirect to a controller or display whatever
-			   content you may choose. Below is a list of controllers that are currently deployed in this application,
-			   click on each to execute its default action:</p>
-
+			
 			<div id="controller-list" role="navigation">
 				<h2>Available Controllers:</h2>
 				<ul>
@@ -118,5 +109,75 @@
 				</ul>
 			</div>
 		</div>
+              
+			<div style="text-align:center"  role="navigation" class="navbar navbar-fixed-top navbar-inverse ">
+				    <div class="navbar-header">
+					 <a class="navbar-brand" href="#"><img src="images/logo.jpg" class="img-responsive "/></a>
+					  <button type="button" class="navbar-toggle" data-toggle="collapse" 
+						 data-target="#navbar-collapse">
+						 <span class="sr-only">Toggle navigation</span>
+						 <span class="icon-bar"></span>
+						 <span class="icon-bar"></span>
+						 <span class="icon-bar"></span>
+					  </button>  
+					  
+				    </div>
+				<div class="collapse navbar-collapse" id="navbar-collapse navbar-inverse">
+				
+					<ul class="nav navbar-nav ">
+						<li><a href="vhome.html">Home</a></li>
+						<li><a href="vtopup.html">Top-Up</a></li>
+						<li><a href="vactivity.html" >My Activity</a></li>
+						<li><a href="vcard.html" >My Card</a></li>
+					</ul>
+				</div>
+            </div>
+		<img src="${resource(dir: 'images', file: 'profile.jpg')}" class="img-responsive "/><hr>
+		<img src="${resource(dir: 'images', file: 'profile2.jpg')}" class="img-responsive "/><hr>
+		<g:link mapping = "simpview" ><img src="${resource(dir: 'images', file: 'button.jpg')}" class="img-responsive "/></g:link><hr>
+		<img src="${resource(dir: 'images', file: 'locat.jpg')}" class="img-responsive "/>
+		
+		<script src="http://openlayers.org/api/OpenLayers.js"></script>
+		<div id="map" class="smallmap"></div>
+		<p id="info"></p>
+		
+		<script>
+// Center on Geneva first
+var lat=46.2078;
+var lon=6.147;
+var zoom=14;
+
+var map = new OpenLayers.Map("map");
+        var mapnik = new OpenLayers.Layer.OSM();
+        map.addLayer(mapnik);
+
+var markers = new OpenLayers.Layer.Markers( "Markers" );
+map.addLayer(markers);
+
+// Recenter on user position
+navigator.geolocation.getCurrentPosition(function(position) {       
+        document.getElementById('info').innerHTML
+            = " Latitude: " + 
+                position.coords.latitude + 
+              " Longitude: " +
+                position.coords.longitude;
+
+        var lonLat = new OpenLayers.LonLat(position.coords.longitude,
+                                position.coords.latitude)
+                  .transform(
+                              new OpenLayers.Projection("EPSG:4326"), //transform from WGS 1984
+                              map.getProjectionObject() //to Spherical Mercator Projection
+                    );
+                                        
+        markers.addMarker(new OpenLayers.Marker(lonLat));
+       
+        map.setCenter(lonLat, 14 // Zoom level
+        );
+
+    });
+
+
+</script> 
+		
 	</body>
 </html>

@@ -13,5 +13,6 @@ class UrlMappings {
         "/hackapi/notifypayment" (controller: "hack", parseRequest: true) { action = [GET: "processPayment"] }
         "/hackapi/checkout" (controller: "hack", parseRequest: true) { action = [POST: "checkout"] }
 
+		name simpview: "/simpview/simplify"(view:"simpview/simplify")
     }
 }
