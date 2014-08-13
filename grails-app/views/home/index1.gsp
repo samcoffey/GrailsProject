@@ -121,7 +121,7 @@
 				</div>
             </div>
 		<img src="${resource(dir: 'images', file: 'profile.jpg')}" class="img-responsive "/><hr>
-		<img src="${resource(dir: 'images', file: 'profile2.jpg')}" class="img-responsive "/><hr>
+		<img src="${resource(dir: 'images', file: 'profile4.jpg')}" class="img-responsive "/><hr>
 		<g:link mapping = "simpview" ><img src="${resource(dir: 'images', file: 'button.jpg')}" class="img-responsive "/></g:link><hr>
 		<img src="${resource(dir: 'images', file: 'locat.jpg')}" class="img-responsive "/>
 		
@@ -195,8 +195,7 @@ function distance(lon1, lat1, lon2, lat2) {
 	});
 </script>
 
-    <g:link id="distance" mapping = "Success" ><img id="distance" src="${resource(dir: 'images', file: 'button2.jpg')}" class="img-responsive "/></g:link>
-
+    <g:link id="distance" mapping = "Success1" ><img id="distance" src="${resource(dir: 'images', file: 'button2.jpg')}" class="img-responsive "/></g:link>
 
 	</body>
 </html>
